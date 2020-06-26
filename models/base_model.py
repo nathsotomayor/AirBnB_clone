@@ -10,20 +10,20 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """ Define constructor """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        if kwargs is not None:
+        if kwargs != {}:
             for k, v in kwargs.items():
                 if k == "created_at":
-                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
-                if k == "updated_at":
-                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
-                if not k == "__class__":
+                    setattr(self, k,
+                            datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif k == "updated_at":
+                    setattr(self, k,
+                            datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif not k == "__class__":
                     setattr(self, k, v)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """String representation"""
