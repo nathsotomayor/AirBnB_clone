@@ -21,5 +21,6 @@ class HBNBCommand(cmd.Cmd):
         """This instruction shouldn't execute anything"""
         pass
 
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

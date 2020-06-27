@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """ Create BaseModel class """
 
+import models
 from uuid import uuid4
 from datetime import datetime
 
 
-class BaseModel():
+class BaseModel:
     """ Defines all common attributes/methods for other classes """
 
     def __init__(self, *args, **kwargs):
@@ -24,6 +25,7 @@ class BaseModel():
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """String representation"""
@@ -33,6 +35,7 @@ class BaseModel():
     def save(self):
         """Updates instance 'update_at' with the current time"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary with all keys/values of __dict__"""
