@@ -4,6 +4,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -80,6 +81,33 @@ class HBNBCommand(cmd.Cmd):
             print(print_all)
         else:
             print("** class doesn't exist **")
+
+    def do_update(self, args):
+        # ÂÂÂ¡ P E N D I N G  complete this method !!!!
+        """ Updates an instance based on the class name
+            and id by adding or updating attribute and save it
+        """
+        arg = args.split(" ")
+        dic = storage.all()
+        if not args:
+            print("** class name missing **")
+        elif arg[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif not "{}.{}".format(arg[0], arg[1]) in dic:
+            print("** no instance found **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        elif "{}.{}".format(arg[0], arg[1]) in dic:
+            key = dic["{}.{}".format(arg[0], arg[1])] 
+            if arg[3].isdigit():
+                # pending delete simple quotes of numbers
+                setattr(key, arg[2], arg[3].replace('"', ''))
+            setattr(key, arg[2], arg[3].replace("\"", ""))
+            key.save()
 
 
 if __name__ == "__main__":
