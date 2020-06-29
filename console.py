@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, args):
-        # ÂÂÂ¡ P E N D I N G  complete this method !!!!
+        # P E N D I N G  complete this method !!!!
         """ Updates an instance based on the class name
             and id by adding or updating attribute and save it
         """
@@ -102,11 +102,15 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 3:
             print("** value missing **")
         elif "{}.{}".format(arg[0], arg[1]) in dic:
-            key = dic["{}.{}".format(arg[0], arg[1])] 
+            key = dic["{}.{}".format(arg[0], arg[1])]
             if arg[3].isdigit():
-                # pending delete simple quotes of numbers
-                setattr(key, arg[2], arg[3].replace('"', ''))
-            setattr(key, arg[2], arg[3].replace("\"", ""))
+                arg3_int = int(arg[3])
+                setattr(key, arg[2], arg3_int)
+            elif "." in arg[3] and arg[3].isnumeric:
+                arg3_float = float(arg[3])
+                setattr(key, arg[2], arg3_float)
+            else:
+                setattr(key, arg[2], arg[3].strip("\""))
             key.save()
 
 
