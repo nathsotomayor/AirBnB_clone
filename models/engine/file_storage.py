@@ -2,8 +2,13 @@
 """ FileStorage class module """
 import json
 from os import path
-from models.base_model import BaseModel
+from models.city import City
 from models.user import User
+from models.state import State
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
 
 class FileStorage:
