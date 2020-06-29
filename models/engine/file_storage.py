@@ -3,6 +3,7 @@
 import json
 from os import path
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -46,4 +47,4 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
             for k, v in data.items():
-                self.__objects[k] = BaseModel(**v)
+                self.__objects[k] = eval(v["__class__"])(**v)

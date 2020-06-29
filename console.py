@@ -4,12 +4,22 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User 
 from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
     """ Define methods to the console """
     prompt = "(hbnb) "
+    __class_name = (
+        "BaseModel",
+        "Amenity",
+        "Review",
+        "State",
+        "Place",
+        "User",
+        "City",
+    )
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
@@ -27,25 +37,26 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ Creates a new instance of BaseModel,
             saves it and print the id.
-        """
-        new_instance = BaseModel()
-        if args == type(new_instance).__name__:
+        """ 
+        args = shlex.split(args)
+        if args[0] in self.__class_name:
+            new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
         elif not args:
             print("** class name missing")
-        elif args != type(new_instance).__name__:
+        elif not args[0] in self.__class_name:
             print("** class doesn't exist **")
 
     def do_show(self, args):
         """ Prints the string representation of
             an instance based an the class name.
         """
-        arg = args.split(" ")
+        args = shlex.split(args)
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif arg[0] != "BaseModel":
+        elif not args[0] in self.__class_name:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -56,11 +67,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         """ Deletes an instance based an the class name. """
-        arg = args.split(" ")
+        args = shlex.split(args)
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif arg[0] != "BaseModel":
+        elif not arg[0] in self.__class_name:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -76,22 +87,21 @@ class HBNBCommand(cmd.Cmd):
         """
         dic = storage.all().values()
         print_all = []
-        if not arg or arg == "BaseModel":
+        if not arg or arg in self.__class_name:
             print_all = [str(value) for value in dic]
             print(print_all)
         else:
             print("** class doesn't exist **")
 
     def do_update(self, args):
-        # P E N D I N G  complete this method !!!!
         """ Updates an instance based on the class name
             and id by adding or updating attribute and save it
         """
-        arg = args.split(" ")
+        args = shlex.split(args)
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif arg[0] != "BaseModel":
+        elif not arg[0] in self.__class_name:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -106,11 +116,12 @@ class HBNBCommand(cmd.Cmd):
             if arg[3].isdigit():
                 arg3_int = int(arg[3])
                 setattr(key, arg[2], arg3_int)
-            elif "." in arg[3] and arg[3].isnumeric:
+            elif ".com" in arg[3]:
+                arg3_str = str(arg[3])
+                setattr(key, arg[2], arg3_str.strip("\""))
+            elif arg[3].isnumeric and "." in arg[3]:
                 arg3_float = float(arg[3])
                 setattr(key, arg[2], arg3_float)
-            else:
-                setattr(key, arg[2], arg[3].strip("\""))
             key.save()
 
 
