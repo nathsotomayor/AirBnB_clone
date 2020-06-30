@@ -22,6 +22,12 @@ class TestFileStorage(unittest.TestCase):
         """
         self.assertTrue(hasattr(FileStorage, '_FileStorage__objects'))
 
+    def test_file_path(self):
+        """ Checking the file path
+        """
+        path_file = FileStorage._FileStorage__file_path
+        self.assertEqual(path_file, 'file.json')
+
     def test_isinstance(self):
         """ Checking if a new object is instace
             of FileStorage
