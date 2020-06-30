@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Unittest for User class module """
+import os
 import models
 import unittest
 from models.user import User
@@ -42,3 +43,12 @@ class TestUser(unittest.TestCase):
         self.assertEqual(User.last_name, "")
         self.assertEqual(User.email, "")
         self.assertEqual(User.password, "")
+
+    def test_permissions(self):
+        """ Test for validate the permissions """
+        read = os.access('models/user.py', os.R_OK)
+        self.assertTrue(read)
+        write = os.access('models/user.py', os.W_OK)
+        self.assertTrue(write)
+        exe = os.access('models/user.py', os.X_OK)
+        self.assertTrue(exe)
