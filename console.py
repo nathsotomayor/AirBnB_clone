@@ -119,8 +119,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         elif "{}.{}".format(args[0], args[1]) in dic:
             key = dic["{}.{}".format(args[0], args[1])]
-            setattr(key, args[2], args[3].strip("\""))
-            key.save()
+            setattr(key, args[2], args[3])
+            storage.save()
+            storage.reload()
 
 
 if __name__ == "__main__":

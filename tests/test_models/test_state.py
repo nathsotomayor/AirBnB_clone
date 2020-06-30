@@ -13,7 +13,6 @@ class TestState(unittest.TestCase):
         new_instance = State()
         self.assertIsInstance(new_instance, State)
 
-
     def test_docstring(self):
         """ Test docstring in module, class and function """
         self.assertTrue(len(State.__doc__) > 0)

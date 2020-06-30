@@ -58,5 +58,5 @@ class TestBaseModel(unittest.TestCase):
             format output.
         """
         formt = "[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__)
+                                      self.id, self.__dict__)
         self.assertTrue(formt)
