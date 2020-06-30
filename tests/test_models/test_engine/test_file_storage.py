@@ -17,6 +17,11 @@ class TestFileStorage(unittest.TestCase):
         for funct in dir(FileStorage):
             self.assertTrue(len(funct.__doc__) > 0)
 
+    def test_objects(self):
+        """ Checking if objects exists
+        """
+        self.assertTrue(hasattr(FileStorage, '_FileStorage__objects'))
+
     def test_isinstance(self):
         """ Checking if a new object is instace
             of FileStorage
