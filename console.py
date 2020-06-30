@@ -119,15 +119,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         elif "{}.{}".format(args[0], args[1]) in dic:
             key = dic["{}.{}".format(args[0], args[1])]
-            if args[3].isdigit():
-                arg3_int = int(args[3])
-                setattr(key, args[2], arg3_int)
-            elif ".com" in args[3]:
-                arg3_str = str(args[3])
-                setattr(key, args[2], arg3_str.strip("\""))
-            elif args[3].isnumeric and "." in args[3]:
-                arg3_float = float(args[3])
-                setattr(key, args[2], arg3_float)
+            setattr(key, args[2], args[3].strip("\""))
             key.save()
 
 
