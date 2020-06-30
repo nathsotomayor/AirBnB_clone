@@ -54,6 +54,19 @@ class TestFileStorage(unittest.TestCase):
         fileStorage.save()
         self.assertTrue(path.exists('file.json'))
 
+    def test_reload(self):
+        """ Checking if the object reloads
+            successfully
+        """
+        new_ins = BaseModel()
+        fileStorage = FileStorage()
+        FileStorage._FileStorage__objects = {}
+        k = "{}.{}".format(type(new_ins).__name__, new_ins.id)
+        fileStorage.new(new_ins)
+        fileStorage.save()
+        fileStorage.reload()
+        self.assertIn(k, FileStorage._FileStorage__objects)
+
     def test_save_method(self):
         """ Checking if save method is saving
             correctly to read our file.
