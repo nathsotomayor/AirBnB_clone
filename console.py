@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
         elif not args:
-            print("** class name missing")
+            print("** class name missing **")
         elif not args[0] in self.__class_name:
             print("** class doesn't exist **")
 
@@ -120,8 +120,7 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(args[0], args[1]) in dic:
             key = dic["{}.{}".format(args[0], args[1])]
             setattr(key, args[2], args[3])
-            storage.save()
-            storage.reload()
+            key.save()
 
 
 if __name__ == "__main__":
