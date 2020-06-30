@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Unittest for FileStorage class module """
 import os
+from os import path
 import unittest
 from models.city import City
 from models.user import User
