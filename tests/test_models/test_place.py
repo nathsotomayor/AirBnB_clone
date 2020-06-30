@@ -9,6 +9,13 @@ class TestPlace(unittest.TestCase):
     """ Testing class """
 
     def test_isinstance(self):
-        """ Test instance of User class """
+        """ Test instance of Place class """
         new_instance = Place()
         self.assertIsInstance(new_instance, Place)
+
+    def test_docstring(self):
+        """ Test docstring in module, class and function """
+        self.assertTrue(len(place.__doc__) > 0)
+        self.assertTrue(len(Place.__doc__) > 0)
+        for funct in dir(Place):
+            self.assertTrue(len(funct.__doc__) > 0)

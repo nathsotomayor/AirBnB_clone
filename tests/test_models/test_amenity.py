@@ -14,7 +14,7 @@ class TestAmenity(unittest.TestCase):
         self.assertIsInstance(new_instance, Amenity)
 
     def test_docstring(self):
-        """ Method to test doctring module, class and func """
+        """ Test docstring in module, class and function """
         self.assertTrue(len(amenity.__doc__) > 0)
         self.assertTrue(len(Amenity.__doc__) > 0)
         for funct in dir(Amenity):
