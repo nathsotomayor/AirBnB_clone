@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Unittest for FileStorage class module """
-from os import path
+import os
 import unittest
 from models.city import City
 from models.user import User
@@ -89,3 +89,12 @@ class TestFileStorage(unittest.TestCase):
         fileStorage.save()
         with open('file.json', 'r') as file:
             self.assertIn(k, file.read())
+
+    def test_permissions(self):
+        """ Test for validate the permissions """
+        read = os.access('models/engine/file_storage.py', os.R_OK)
+        self.assertTrue(read)
+        write = os.access('models/engine/file_storage.py', os.W_OK)
+        self.assertTrue(write)
+        exe = os.access('models/engine/file_storage.py', os.X_OK)
+        self.assertTrue(exe)
