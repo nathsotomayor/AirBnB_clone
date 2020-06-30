@@ -8,6 +8,12 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     """ Testing class"""
 
+    def test_docstring(self):
+        """ Test docstring in module, class and function """
+        self.assertTrue(len(BaseModel.__doc__) > 0)
+        for funct in dir(BaseModel):
+            self.assertTrue(len(funct.__doc__) > 0)
+
     def test_to_dict(self):
         """ Checking if to_dict method is
             returning a dictionary with all

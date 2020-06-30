@@ -15,7 +15,6 @@ class TestCity(unittest.TestCase):
 
     def test_docstring(self):
         """ Test docstring in module, class and function """
-        self.assertTrue(len(city.__doc__) > 0)
         self.assertTrue(len(City.__doc__) > 0)
         for funct in dir(City):
             self.assertTrue(len(funct.__doc__) > 0)

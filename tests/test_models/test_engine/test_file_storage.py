@@ -4,12 +4,19 @@ from os import path
 import unittest
 from models.city import City
 from models.user import User
+from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
     """ FileStorage testing class
     """
+    def test_docstring(self):
+        """ Test docstring in module, class and function """
+        self.assertTrue(len(FileStorage.__doc__) > 0)
+        for funct in dir(FileStorage):
+            self.assertTrue(len(funct.__doc__) > 0)
+
     def test_isinstance(self):
         """ Checking if a new object is instace
             of FileStorage
@@ -46,3 +53,15 @@ class TestFileStorage(unittest.TestCase):
         fileStorage.new(user1)
         fileStorage.save()
         self.assertTrue(path.exists('file.json'))
+
+    def test_save_method(self):
+        """ Checking if save method is saving
+            correctly to read our file.
+        """
+        new_model = BaseModel()
+        fileStorage = FileStorage()
+        k = "{}.{}".format(type(new_model).__name__, new_model.id)
+        fileStorage.new(new_model)
+        fileStorage.save()
+        with open('file.json', 'r') as file:
+            self.assertIn(k, file.read())
