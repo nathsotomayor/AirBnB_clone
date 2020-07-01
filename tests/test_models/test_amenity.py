@@ -2,7 +2,6 @@
 """ Unittest for Amenity class module """
 import os
 import pep8
-import models
 import unittest
 from models.amenity import Amenity
 

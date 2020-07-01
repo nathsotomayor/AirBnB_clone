@@ -2,7 +2,6 @@
 """ Unittest for Place class module """
 import os
 import pep8
-import models
 import unittest
 from models.place import Place
 

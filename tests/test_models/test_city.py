@@ -2,7 +2,6 @@
 """ Unittest for City class module """
 import os
 import pep8
-import models
 import unittest
 from models.city import City
 

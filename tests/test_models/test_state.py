@@ -2,7 +2,6 @@
 """ Unittest for State  class module """
 import os
 import pep8
-import models
 import unittest
 from models.state import State
 

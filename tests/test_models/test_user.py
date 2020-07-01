@@ -2,7 +2,6 @@
 """ Unittest for User class module """
 import os
 import pep8
-import models
 import unittest
 from models.user import User
 from models.base_model import BaseModel
@@ -19,6 +18,12 @@ class TestUser(unittest.TestCase):
         checking = style.check_files((file1_path, file2_path))
         mess = "Found code style errors (and warning)."
         self.assertEqual(checking.total_errors, 0, mess)
+
+    def test_docstring(self):
+        """ Test docstring in module, class and function """
+        self.assertTrue(len(User.__doc__) > 0)
+        for funct in dir(User):
+            self.assertTrue(len(funct.__doc__) > 0)
 
     def test_isinstance(self):
         """ Test instance of User class """
