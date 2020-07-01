@@ -133,8 +133,8 @@ Also in non-interactive mode:
 |`all <class_name>`                                              |Prints all string representation of all instances of a specific class (`<class_name>`)|
 |`update <class_name> <id> <attribute name> "<attribute value>"`  |Updates an instance of a class by adding or updating an attribute|
 |`destroy <class_name> <id>`                                     |Deletes an instance|
-|`quit`                                                          |to exit the program|
-|`EOF (Ctrl+D)`                                                  |to exit the program|
+|`quit`                                                          |To exit the program|
+|`EOF`                                                           |To exit the program|
 
 An empty line + ENTER shouldn’t execute anything
 
@@ -157,6 +157,36 @@ An empty line + ENTER shouldn’t execute anything
 `show` command use:
 
 ![hbnb_show_command](https://user-images.githubusercontent.com/28455356/86297067-fdd58d00-bbbf-11ea-8258-698ad7b9ed9d.png)
+
+* **All**
+
+`all` command use:
+
+![hbnb_all_command](https://user-images.githubusercontent.com/28455356/86299516-16e13c80-bbc6-11ea-9a47-afb486f7a107.png)
+
+* **Update**
+
+`update` command use:
+
+![hbnb_update_command](https://user-images.githubusercontent.com/28455356/86300204-c834a200-bbc7-11ea-89b5-18a67b622f5a.png)
+
+* **Destroy**
+
+`destroy` command use:
+
+![hbnb_destroy_command](https://user-images.githubusercontent.com/28455356/86300539-c15a5f00-bbc8-11ea-979b-f1ab4defdc2b.png)
+
+* **Quit**
+
+`quit` command use:
+
+![hbnb_quit_command](https://user-images.githubusercontent.com/28455356/86301843-8a864800-bbcc-11ea-8e42-27105fb34f17.png)
+
+* **EOF**
+
+`EOF` command use:
+
+![hbnb_EOF_command](https://user-images.githubusercontent.com/28455356/86301920-ca4d2f80-bbcc-11ea-836c-657f4723a15e.png)
 
 
 ## Resources
