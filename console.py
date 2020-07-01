@@ -3,7 +3,6 @@
 
 import cmd
 import shlex
-from shlex import split
 from models import storage
 from models.city import City
 from models.user import User
@@ -130,6 +129,38 @@ class HBNBCommand(cmd.Cmd):
             key = dic["{}.{}".format(args[0], args[1])]
             setattr(key, args[2], args[3])
             key.save()
+
+    def count(self, args):
+        """ Count the number of instances
+            of a class.
+        """
+        count = 0
+        args = shlex.split(args, " ")
+        if not args[0] in class_name:
+            print("** class doesn't exit **")
+        else:
+            dic = storage.all()
+            for k, v in dic.items():
+                if args[0] in k:
+                    count += 1
+            print(count)
+
+    def default(self, args):
+        """ Default method for advanced
+            tasks.
+        """
+        args = args.split(".")
+        if len(args) > 1:
+            if args[1] == 'all()':
+                self.do_all(args[0])
+            elif args[1] == 'count()':
+                self.count(args[0])
+            elif 'show' in args[1]:
+                arg = args[1].split('"')
+                self.do_show(args[0] + " " + arg[1])
+            elif 'destroy' in args[1]:
+                arg = args[1].split('"')
+                self.do_destroy(args[0] + " " + arg[1])
 
 
 if __name__ == "__main__":
