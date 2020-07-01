@@ -35,6 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Ctrl-D to exit the program"""
+        print()
         return True
 
     def emptyline(self):
@@ -85,7 +86,6 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(args[0], args[1]) in dic:
             dic.pop("{}.{}".format(args[0], args[1]))
             storage.save()
-            storage.reload()
         else:
             print("** no instance found **")
 
@@ -128,8 +128,7 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(args[0], args[1]) in dic:
             key = dic["{}.{}".format(args[0], args[1])]
             setattr(key, args[2], args[3].strip("\""))
-            key.save()
-            storage.reload()
+            storage.save()
 
 
 if __name__ == "__main__":
