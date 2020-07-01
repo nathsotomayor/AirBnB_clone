@@ -42,6 +42,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """This instruction shouldn't execute anything"""
         pass
+
     def do_create(self, args):
         """ Creates a new instance of BaseModel,
             saves it and print the id.
