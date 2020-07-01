@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             saves it and print the id.
         """
         args = shlex.split(args)
-        if args[0] in self.__class_name:
+        if args[0] in class_name:
             new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
@@ -83,17 +83,24 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(args[0], args[1]) in dic:
             dic.pop("{}.{}".format(args[0], args[1]))
             storage.save()
+            storage.reload()
         else:
             print("** no instance found **")
 
-    def do_all(self, arg):
+    def do_all(self, args):
         """ Prints all string representation of all
             instances based or not on the class name
         """
-        dic = storage.all().values()
+        args = shlex.split(args)
+        dic = storage.all()
         print_all = []
-        if not arg or arg in self.__class_name:
-            print_all = [str(value) for value in dic]
+        if args == []:
+            print_all = [str(value) for value in dic.values()]
+            print(print_all)
+        elif args[0] in self.__class_name:
+            for k, v in dic.items():
+                if v.__class__.__name__ == args[0]:
+                    print_all.append(v.__str__())
             print(print_all)
         else:
             print("** class doesn't exist **")
@@ -102,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name
             and id by adding or updating attribute and save it
         """
-        args = shlex.split(args)
+        args = args.split(" ")
         dic = storage.all()
         if not args:
             print("** class name missing **")
@@ -118,8 +125,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         elif "{}.{}".format(args[0], args[1]) in dic:
             key = dic["{}.{}".format(args[0], args[1])]
-            setattr(key, args[2], args[3])
+            setattr(key, args[2], args[3].strip("\""))
             key.save()
+            storage.reload()
 
 
 if __name__ == "__main__":
