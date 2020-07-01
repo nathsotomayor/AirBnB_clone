@@ -42,10 +42,10 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """This instruction shouldn't execute anything"""
         pass
-"""    def do_create(self, args):
-         Creates a new instance of BaseModel,
+    def do_create(self, args):
+        """ Creates a new instance of BaseModel,
             saves it and print the id.
-
+        """
         args = shlex.split(args)
         if args[0] in class_name:
             new_instance = eval(args[0])()
@@ -55,19 +55,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif not args[0] in class_name:
             print("** class doesn't exist **")
-"""
-
-    def do_create(self, arg):
-        """ Creates a new instance of BaseModel """
-        args = split(arg)
-        if args == []:
-            print("** class name missing **")
-        elif args[0] not in class_name:
-            print("** class doesn't exist **")
-        else:
-            instance = class_name.get(args[0])()
-            instance.save()
-            print(instance.id)
 
     def do_show(self, args):
         """ Prints the string representation of
