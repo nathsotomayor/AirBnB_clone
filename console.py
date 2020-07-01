@@ -54,9 +54,8 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, args):
-        """ Prints the string representation of
-            an instance based an the class name.
-        """
+        """ Prints the string representation of an instance
+based on the class name and id"""
         args = shlex.split(args)
         dic = storage.all()
         if not args:
