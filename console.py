@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             saves it and print the id.
         """
         args = shlex.split(args)
-        if args[0] in class_name:
+        if args[0] in self.__class_name:
             new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
