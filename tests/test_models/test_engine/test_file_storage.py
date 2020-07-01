@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ Unittest for FileStorage class module """
 import os
-from os import path
+import pep8
 import unittest
+from os import path
 from models.city import City
 from models.user import User
 from models.base_model import BaseModel
@@ -17,6 +18,16 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(len(FileStorage.__doc__) > 0)
         for funct in dir(FileStorage):
             self.assertTrue(len(funct.__doc__) > 0)
+
+    def test_pep8(self):
+        """ pep8 unittest
+        """
+        style = pep8.StyleGuide(quiet=True)
+        file1_path = 'models/engine/file_storage.py'
+        file2_path = 'tests/test_models/test_engine/test_file_storage.py'
+        checking = style.check_files((file1_path, file2_path))
+        mess = "Found code style errors (and warning)."
+        self.assertEqual(checking.total_errors, 0, mess)
 
     def test_objects(self):
         """ Checking if objects exists

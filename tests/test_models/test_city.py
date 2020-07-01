@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Unittest for City class module """
 import os
+import pep8
 import models
 import unittest
 from models.city import City
@@ -8,6 +9,15 @@ from models.city import City
 
 class TestCity(unittest.TestCase):
     """ Testing class """
+    def test_pep8(self):
+        """ pep8 unittest
+        """
+        style = pep8.StyleGuide(quiet=True)
+        file1_path = 'models/city.py'
+        file2_path = 'tests/test_models/test_city.py'
+        checking = style.check_files((file1_path, file2_path))
+        mess = "Found code style errors (and warning)."
+        self.assertEqual(checking.total_errors, 0, mess)
 
     def test_isinstance(self):
         """ Test instance of City class """

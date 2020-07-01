@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Unittest for BaseModel class module """
 import os
+import pep8
 import models
 import unittest
 from models.base_model import BaseModel
