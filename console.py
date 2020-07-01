@@ -14,18 +14,20 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
+class_name = {
+    "BaseModel": BaseModel,
+    "Amenity": Amenity,
+    "Review": Review,
+    "State": State,
+    "Place": Place,
+    "User": User,
+    "City": City,
+}
+
+
 class HBNBCommand(cmd.Cmd):
     """ Define methods to the console """
     prompt = "(hbnb) "
-    __class_name = (
-        "BaseModel",
-        "Amenity",
-        "Review",
-        "State",
-        "Place",
-        "User",
-        "City",
-    )
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
@@ -44,13 +46,13 @@ class HBNBCommand(cmd.Cmd):
             saves it and print the id.
         """
         args = shlex.split(args)
-        if args[0] in self.__class_name:
+        if args[0] in class_name:
             new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
         elif not args:
             print("** class name missing **")
-        elif not args[0] in self.__class_name:
+        elif not args[0] in class_name:
             print("** class doesn't exist **")
 
     def do_show(self, args):
@@ -61,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif not args[0] in self.__class_name:
+        elif not args[0] in class_name:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -76,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif not args[0] in self.__class_name:
+        elif not args[0] in class_name:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -97,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         if args == []:
             print_all = [str(value) for value in dic.values()]
             print(print_all)
-        elif args[0] in self.__class_name:
+        elif args[0] in class_name:
             for k, v in dic.items():
                 if v.__class__.__name__ == args[0]:
                     print_all.append(v.__str__())
@@ -113,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         dic = storage.all()
         if not args:
             print("** class name missing **")
-        elif not args[0] in self.__class_name:
+        elif not args[0] in class_name:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
