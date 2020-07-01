@@ -109,8 +109,9 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(args)
         dic = storage.all()
         print_all = []
-        if args == []:
-            print_all = [str(value) for value in dic.values()]
+        if not args:
+            for v in dic.values():
+                print_all.append(str(v))
             print(print_all)
         elif args[0] in class_name:
             for k, v in dic.items():
@@ -124,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name
             and id by adding or updating attribute and save it
         """
-        args = args.split(" ")
+        args = shlex.split(args)
         dic = storage.all()
         if not args:
             print("** class name missing **")
@@ -138,10 +139,10 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         elif len(args) == 3:
             print("** value missing **")
-        elif "{}.{}".format(args[0], args[1]) in dic:
+        else:
             key = dic["{}.{}".format(args[0], args[1])]
-            setattr(key, args[2], args[3].strip("\""))
-            storage.save()
+            setattr(key, args[2], args[3])
+            key.save()
 
 
 if __name__ == "__main__":
