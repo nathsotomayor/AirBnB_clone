@@ -47,14 +47,14 @@ class HBNBCommand(cmd.Cmd):
             saves it and print the id.
         """
         args = shlex.split(args)
-        if args[0] in class_name:
-            new_instance = eval(args[0])()
-            new_instance.save()
-            print(new_instance.id)
-        elif not args:
+        if not args:
             print("** class name missing **")
         elif not args[0] in class_name:
             print("** class doesn't exist **")
+        else:
+            new_instance = eval(args[0])()
+            new_instance.save()
+            print(new_instance.id)
 
     def do_show(self, args):
         """ Prints the string representation of
