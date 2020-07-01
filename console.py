@@ -3,6 +3,7 @@
 
 import cmd
 import shlex
+from shlex import split
 from models import storage
 from models.city import City
 from models.user import User
